@@ -29,15 +29,21 @@ def func1(x3, x2, x1, k, a, b, eps):
 def func1_check(x3, x2, x1, k, a, b):
     return f(a,x3,x2,x1,k)*f(b,x3,x2,x1,k)>0
 
-def func3(x3, x2, x1, k, b=3, eps=0.01):
+def func3(x3, x2, x1, k, end, eps):
     answer = ''
+
+    if (f(a,x3,x2,x1,k)*f2(a,x3,x2)>0):
+        end = a
+    else:
+        end = b
+
     count = 0
-    tmp_1 = b
+    tmp_1 = end
     tmp = tmp_1
     tmp_2 = tmp_1 - (f(tmp_1, x3, x2, x1, k) / f1(tmp_1, x3, x2, x1))
     answer += str(count) + '. ' + 'xi-1 = ' + str(tmp_1) + '; xi = ' + str(tmp_2) + '; \n'
 
-    while abs(tmp - tmp_2) > eps and (f(tmp, x3, x2, x1, k) / f1(tmp, x3, x2, x1)) > eps:
+    while abs(tmp - tmp_2) > eps:
         count+=1
         answer += str(count) + '. ' + 'xi-1 = ' + str(tmp_1) + '; xi = ' + str(tmp_2) + '; \n'
         tmp = tmp_1
@@ -117,7 +123,7 @@ def printGraphFor5(a, b):
     fig, ax = plt.subplots()
     x = np.linspace(a, b, 1000)
     y1 = x
-    y2 = 3 * x3 * pow(x, 2) - 2 * x2 * x - x1
+    y2 = f(x,x3,x2,x1,k)
     ax.plot(x, y1)
     ax.plot(x, y2)
     plt.show()
@@ -126,7 +132,7 @@ def printGraphFor5(a, b):
 def printGraph(a, b):
     fig, ax = plt.subplots()
     x = np.linspace(a, b, 1000)
-    y = 3 * x3 * pow(x, 2) - 2 * x2 * x - x1
+    y = f(x,x3,x2,x1,k)
     ax.plot(x, y)
     plt.show()
 
