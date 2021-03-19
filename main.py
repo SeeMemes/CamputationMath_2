@@ -75,9 +75,15 @@ def func5(x3, x2, x1, k, a, b, eps):
 
 
 def func5_check(a, b, k):
-    count_1 = 1/(3*pow(abs(a-k), -2/3))
-    count_2 = 1/(3*pow(abs(b-k), -2/3))
-    return (count_1 < 1 and count_2 < 1)
+    if (a-k>0):
+        count_1 = 1/(3*pow(abs(a-k), -2/3))
+    else:
+        count_1 = 0
+    if (b-k>0.0):
+        count_2 = 1/(3*pow(abs(b-k), -2/3))
+    else:
+        count_2 = 0
+    return (count_1 >= 1 and count_2 >= 1)
 
 def f(x, x3, x2, x1, k):
     return x3*pow(x,3) + x2*pow(x,2) + x1*x + k
@@ -106,9 +112,20 @@ def searchX(min_range, max_range, x, x3, x2, x1):
 def getLambda(x, x3, x2, x1):
     return 1 / (3 * x3 * pow(x, 2) - 2 * x2 * x - x1)
 
-def printGraph(a,b):
+
+def printGraphFor5(a, b):
     fig, ax = plt.subplots()
-    x = np.linspace(a, b, 100)
+    x = np.linspace(a, b, 1000)
+    y1 = x
+    y2 = 3 * x3 * pow(x, 2) - 2 * x2 * x - x1
+    ax.plot(x, y1)
+    ax.plot(x, y2)
+    plt.show()
+
+
+def printGraph(a, b):
+    fig, ax = plt.subplots()
+    x = np.linspace(a, b, 1000)
     y = 3 * x3 * pow(x, 2) - 2 * x2 * x - x1
     ax.plot(x, y)
     plt.show()
@@ -176,7 +193,7 @@ if __name__ == '__main__':
             answer = func3(x3, x2, x1, k, b, eps)
             answerGiven = False
         elif give == '3':
-            printGraph(a, b)
+            printGraphFor5(a, b)
             answer = func5(x3, x2, x1, k, a, b, eps)
             answerGiven = False
         else:
