@@ -50,7 +50,7 @@ def func3(x3, x2, x1, k, end, eps):
         tmp_1 = tmp_2
         tmp_2 = tmp - (f(tmp, x3, x2, x1, k) / f1(tmp, x3, x2, x1))
 
-    answer += 'Ответ: ' + str(tmp)
+    answer += 'Ответ: ' + str(tmp) + ' | Количество итераций: ' + str(count)
     return answer
 
 
