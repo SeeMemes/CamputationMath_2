@@ -95,9 +95,9 @@ def getLambda(x, x3, x2, x1):
 def printGraphFor5(a, b):
     fig, ax = plt.subplots()
     x = np.linspace(a, b, 1000)
-    y1 = x
-    y2 = f1(x, x3, x2, x1)
-    ax.plot(x, y1)
+    #y1 = x
+    y2 = f(x, x3, x2, x1, k)
+    #ax.plot(x, y1)
     ax.plot(x, y2)
     plt.show()
 
